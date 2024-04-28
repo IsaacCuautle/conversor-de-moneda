@@ -11,7 +11,5 @@ public class GsonResults {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .create();
-
-        System.out.println(gson.toJson(results));
     }
 }

@@ -7,19 +7,26 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Scanner;
 
 public class ConsultarAPI
 {
 
+    private int amount=0;
+
     // Manupular el enlace con los parametros para el tipo de cambip
     public ExchangeRate createUrl(String base, String target, int amount)
     {
+        Scanner teclado = new Scanner(System.in);
+
+        System.out.println(" A continuacion ingrese la cantidad a convertir");
+        this.amount = teclado.nextInt();
         URI url = URI.create("https://v6.exchangerate-api.com/v6/aa7bd3ecea0f90d30f1498b9/pair/"
                 +base
                 +"/"
                 +target
                 +"/"
-                +String.valueOf(amount));
+                +String.valueOf(this.amount));
         return consultaHttp(url);
     }
 
@@ -48,6 +55,9 @@ public class ConsultarAPI
         {
             throw new Error("Ocurrio un error"+e.getMessage());
         }
+    }
 
+    public int getAmount() {
+        return amount;
     }
 }
